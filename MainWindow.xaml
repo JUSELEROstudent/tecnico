@@ -1,0 +1,43 @@
+﻿<Window x:Class="tecnico.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tecnico"
+        xmlns:viewModel="clr-namespace:tecnico.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+    
+    <Grid Margin="10" HorizontalAlignment="Stretch">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">Usuario:</Label>
+        <Label Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">Contrasena:</Label>
+        <TextBox Grid.Column="2" Grid.Row="1" Background="#FFEAEAEA" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Username}"></TextBox>
+        <customcontrols:BindablePasswordBox 
+            Grid.Column="2" Grid.Row="2" Background="#FFEAEAEA" Height="25" >            
+        </customcontrols:BindablePasswordBox>
+        <Button Grid.Column="2" Grid.Row="3" Height="25" VerticalAlignment="Top" Click="Button_Click"> Iniciar</Button>
+    </Grid>
+</Window>
